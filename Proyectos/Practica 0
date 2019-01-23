@@ -5,9 +5,13 @@ Compilar y correr xv6
 ## Herramientas 
 gcc -> compilador
 git -> compartir código 
-
+make -> automatizar
+qemu -> para crear la maquina virtual 
 
 # Conceptos 
-Sistemas operativos dos partes:
+Sistemas operativos dos partes:kernel y las aplicaciones de sistema
 
 # Qué Aprendí 
+Analizamos el Makefile que venía con xv6 para conocer un poco mas de como funciona
+Hicimos 3 modificaciones, la version que usamos, cambiamos a 1 cpu y lo ejecutamos nographic 
+Utilizamos el make para compilar y correr qemu
