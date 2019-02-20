@@ -155,18 +155,38 @@ main(void)
     }
   }
 
+	static char prevBuf[100];
   // Read and run input commands.
+	
+	int i; 
+	
+	prevBuf[0]= '\0';
+	
   while(getcmd(buf, sizeof(buf)) >= 0){
-    if(buf[0] == 'c' && buf[1] == 'd' && buf[2] == ' '){
+	if(buf[0] == 'p' && buf[1] == '\n'){
+    if(prevBuf[0] == '\0') continue; 
+    if(fork1() == 0)
+      runcmd(parsecmd(prevBuf));
+    wait();
+  	}
+	else{
+//		char strcpy(prevBuf, buf);	
+	if(buf[0] == 'c' && buf[1] == 'd' && buf[2] == ' '){
       // Chdir must be called by the parent, not the child.
-      buf[strlen(buf)-1] = 0;  // chop \n
-      if(chdir(buf+3) < 0)
+      buf[strlen(buf)-1] = 0;  // chop \n	
+	if(chdir(buf+3) < 0)
         printf(2, "cannot cd %s\n", buf+3);
       continue;
-    }
+	}
     if(fork1() == 0)
       runcmd(parsecmd(buf));
-    wait();
+
+	for(i=0; buf[i] != '\0'; i++){
+		prevBuf[i]= buf[i];
+	}
+		prevBuf[i] = '\0';
+		wait();
+  	}
   }
   exit();
 }
