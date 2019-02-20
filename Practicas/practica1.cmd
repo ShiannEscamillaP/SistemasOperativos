@@ -1,5 +1,0 @@
-## Objetivo
-
-## Herramientas
-
-## Que aprendi
