@@ -30,4 +30,7 @@ gcc
 + Es el programa encargado de inicializar al SO para dejarlo listo para usarse 
 + Es el unico proceso que crea el SO
  ## Que aprendí
+Aprendimos lo que es un proceso y modificamos el código del init o proceso padre para que mande un mensaje de bienvenida al inicio
 
+## Commit 
+https://github.com/ShiannEscamillaP/SistemasOperativos/blob/master/init.c
