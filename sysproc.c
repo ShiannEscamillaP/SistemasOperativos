@@ -104,3 +104,7 @@ sys_reboot(void)
 	outb(0x64,0xFE);
 	return 0; 	
 }
+
+
+
+
