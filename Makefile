@@ -183,8 +183,10 @@ UPROGS=\
 	_zombie\
 	_apagar\
 	_reiniciar\
+	_date\
 	_chprio\
 	_lsprio\
+	_fibo\
 
 fs.img: mkfs README $(UPROGS)
 	./mkfs fs.img README $(UPROGS)

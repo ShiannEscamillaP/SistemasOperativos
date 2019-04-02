@@ -108,6 +108,7 @@ extern int sys_shutdown(void);
 extern int sys_reboot(void);
 extern int sys_setpriority(void);
 extern int sys_getpriority(void);
+extern int sys_date(void);
 
 static int (*syscalls[])(void) = {
 [SYS_fork]    sys_fork,
@@ -135,10 +136,10 @@ static int (*syscalls[])(void) = {
 [SYS_reboot]  sys_reboot,
 [SYS_setpriority] sys_setpriority,
 [SYS_getpriority] sys_getpriority,
+[SYS_date]	  sys_date,	
 };
 
 int contWrite = 0; 
-int flagInicio=0; 
 
 void
 syscall(void)
@@ -170,12 +171,13 @@ char *llamadas[]= {"SYS_nada",
                 "SYS_shutdown",
                 "SYS_reboot",
                 "SYS_setpriority",
-                "SYS_getpriority"
+                "SYS_getpriority",
+				"SYS_date"
 };
 	
   num = curproc->tf->eax;
   if(num > 0 && num < NELEM(syscalls) && syscalls[num]) {
-	  if(num != 16 || flagInicio){
+	  if(num != 16){
 		cprintf(" Lllamada %d ", num);
 		cprintf(llamadas[num]);
 		cprintf("\n");
@@ -183,10 +185,9 @@ char *llamadas[]= {"SYS_nada",
 		contWrite = contWrite + 1;
 	}
 
-	if(contWrite >= 27) {
+	if(contWrite >= 30) {
 		cprintf("\n %d Llamadas: 16 SYS_write \n", contWrite);
 		contWrite = 0;
-		flagInicio=1;
   	}	
 	  
     curproc->tf->eax = syscalls[num]();
