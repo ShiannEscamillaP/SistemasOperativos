@@ -14,6 +14,7 @@
 // to a saved program counter, and then the first argument.
 
 // Fetch the int at addr from the current process.
+
 int
 fetchint(uint addr, int *ip)
 {
@@ -136,15 +137,58 @@ static int (*syscalls[])(void) = {
 [SYS_getpriority] sys_getpriority,
 };
 
+int contWrite = 0; 
+int flagInicio=0; 
 
 void
 syscall(void)
 {
   int num;
   struct proc *curproc = myproc();
-
+char *llamadas[]= {"SYS_nada",
+    			"SYS_fork",
+    			"SYS_exit",
+                "SYS_wait",
+                "SYS_pipe",
+		        "SYS_read",
+                "SYS_kill",
+                "SYS_exec",
+                "SYS_fstat",
+    	        "SYS_chdir",
+                "SYS_dup",
+                "SYS_getpid",
+                "SYS_sbrk",
+                "SYS_sleep",
+                "SYS_uptime",
+                "SYS_open",
+                "SYS_write",
+                "SYS_mknod",
+                "SYS_unlink",
+                "SYS_link",
+                "SYS_mkdir",
+                "SYS_close",
+                "SYS_shutdown",
+                "SYS_reboot",
+                "SYS_setpriority",
+                "SYS_getpriority"
+};
+	
   num = curproc->tf->eax;
   if(num > 0 && num < NELEM(syscalls) && syscalls[num]) {
+	  if(num != 16 || flagInicio){
+		cprintf(" Lllamada %d ", num);
+		cprintf(llamadas[num]);
+		cprintf("\n");
+	} else {
+		contWrite = contWrite + 1;
+	}
+
+	if(contWrite >= 27) {
+		cprintf("\n %d Llamadas: 16 SYS_write \n", contWrite);
+		contWrite = 0;
+		flagInicio=1;
+  	}	
+	  
     curproc->tf->eax = syscalls[num]();
   } else {
     cprintf("%d %s: unknown sys call %d\n",
