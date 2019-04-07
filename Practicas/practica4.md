@@ -20,13 +20,14 @@ gcc
 + Restaurar el PC y la dirección del nuevo proceso. 
 
 ## Que aprendí
-
+Aprendí sobre un planificador de procesos, como funciona y como implementarlo. Implementamos funciones que pudieran consultar y cambiar los procesos. La práctica aún no esta completa. 
 
 ## Commit 
+https://github.com/ShiannEscamillaP/SistemasOperativos/blob/master/proc.h
 
 ## Como se relaciona con los conceptos anteriores 
-llamadas al sistema
-procesos
++llamadas al sistema
++procesos
 
 
 
