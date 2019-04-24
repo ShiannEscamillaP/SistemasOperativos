@@ -30,7 +30,7 @@ git
  
  
 # URL del Comit 
-
+https://github.com/ShiannEscamillaP/SistemasOperativos/tree/master/pthreads
 
 # ¿Que aprendi? 
 Esta práctica no modificamos el sistema operativo, si no que utilizamos y probamos diferentes maneras de manejar información compartida conocidas como Interprocess Communications (IPC)   
